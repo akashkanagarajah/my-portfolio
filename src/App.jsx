@@ -1,15 +1,22 @@
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-// Later: import About from './pages/About';
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import About from './pages/About'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    AOS.init({ once: false })
+  }, [])
+
   return (
-    <div className="bg-gray-900 text-white font-sans scroll-smooth">
+    <>
       <Navbar />
       <Home />
-      {/* Later: <About /> */}
-    </div>
-  );
+      <About />
+    </>
+  )
 }
 
-export default App;
+export default App
