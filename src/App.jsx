@@ -5,6 +5,8 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
+
 function App() {
   useEffect(() => {
     AOS.init({ once: false })
@@ -16,6 +18,7 @@ function App() {
       <Home />
       <About />
       <Projects />
+      <Contact />
     </>
   )
 }

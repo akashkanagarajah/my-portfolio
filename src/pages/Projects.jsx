@@ -6,8 +6,8 @@ export default function Projects() {
       title: "Smart Resume Analyzer",
       description: "Analyzes uploaded resumes to extract and match skills against job descriptions using AI. Features include skill extraction, job matching, and detailed analytics.",
       stack: "React, Tailwind CSS, Node.js, OpenAI API, Netlify",
-      github: "https://github.com/akashkanagarajah/resume-analyzer",
-      demo: "https://resume-analyzer-akash.netlify.app"
+      github: "https://github.com/akashkanagarajah/resume-builder-saas",
+      demo: "https://resume-analyzer-akash.netlify.app/"
     },
     {
       title: "AI Fitness Plan Generator",
