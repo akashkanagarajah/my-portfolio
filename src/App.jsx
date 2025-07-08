@@ -4,7 +4,7 @@ import About from './pages/About'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect } from 'react'
-
+import Projects from "./pages/Projects";
 function App() {
   useEffect(() => {
     AOS.init({ once: false })
@@ -15,6 +15,7 @@ function App() {
       <Navbar />
       <Home />
       <About />
+      <Projects />
     </>
   )
 }

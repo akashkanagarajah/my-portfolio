@@ -1,6 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
+
+/* Global classes for flip animation */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.rotate-y-180-scale-110 {
+  transform: rotateY(180deg) scale(1.1);
+}
+
+/* Debug styles to make sure transforms are working */
+.flip-debug {
+  transform: rotateY(180deg);
+}
+
+/* Custom button hover effects */
+.btn-hover {
+  transition: all 0.2s ease;
+  transform: translateZ(0);
+}
+
+.btn-hover:hover {
+  transform: translateZ(0) scale(1.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-github {
+  background-color: #059669;
+}
+
+.btn-github:hover {
+  background-color: #10b981;
+}
+
+.btn-demo {
+  background-color: #2563eb;
+}
+
+.btn-demo:hover {
+  background-color: #3b82f6;
+}
