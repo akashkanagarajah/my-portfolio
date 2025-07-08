@@ -6,6 +6,7 @@ import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
       <About />
       <Projects />
       <Contact />
+      <ScrollToTop />
     </>
   )
 }

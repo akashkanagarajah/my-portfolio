@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +7,13 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init("UUE6Fa057N4kCF6le");
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,10 +25,34 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add form submission logic
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // EmailJS configuration
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+      to_name: 'Akash'
+    };
+
+    emailjs.send(
+      'service_4vka7uf', // Your EmailJS service ID
+      'template_th36gej', // Your template ID
+      templateParams,
+      'UUE6Fa057N4kCF6le' // Your public key
+    )
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setIsSubmitting(false);
+      })
+      .catch((error) => {
+        console.log('Failed to send email:', error);
+        setSubmitStatus('error');
+        setIsSubmitting(false);
+      });
   };
 
   const contactLinks = [
@@ -137,10 +169,27 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full bg-emerald-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-emerald-700 hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
+                disabled={isSubmitting}
+                className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg ${
+                  isSubmitting 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:scale-105'
+                }`}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+
+              {/* Success/Error Messages */}
+              {submitStatus === 'success' && (
+                <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+                  ✅ Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  ❌ Failed to send message. Please try again or contact me directly via email.
+                </div>
+              )}
             </form>
           </div>
         </div>
