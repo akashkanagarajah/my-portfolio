@@ -33,9 +33,11 @@ export default function Projects() {
           Here are some of the projects I've worked on. Each one represents different skills and technologies I've learned.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
           {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <div key={index} className="flex justify-center">
+              <ProjectCard {...project} />
+            </div>
           ))}
         </div>
       </div>
